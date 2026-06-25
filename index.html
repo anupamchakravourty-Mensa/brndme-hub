@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>BRND.ME — Influencer Gifting Program</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -24,6 +24,12 @@
 }
 
 /* ── RESET ──────────────────────────────────────── */
+
+/* ── TOUCH OPTIMISATIONS ──────────────────────────── */
+* { -webkit-tap-highlight-color: transparent; }
+button, a { touch-action: manipulation; }
+input, textarea, select { font-size: 16px !important; } /* Prevents iOS zoom on focus */
+body { -webkit-text-size-adjust: 100%; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -518,17 +524,94 @@ footer {
 }
 
 /* ── RESPONSIVE ─────────────────────────────────── */
+/* ════════════════════════════════════════════════════
+   COMPREHENSIVE MOBILE OVERHAUL — BRND.ME Hub
+   ════════════════════════════════════════════════════ */
+
+/* ── TABLET (768px) ──────────────────────────────── */
 @media (max-width: 768px) {
-  nav { padding: 0 24px; }
-  .hero { padding: 100px 24px 60px; }
-  .section { padding: 0 24px 60px; }
+  /* Nav */
+  nav { padding: 0 24px; height: 56px; }
+  .nav-tag { display: none; }
+
+  /* Hero */
+  .hero { padding: 80px 24px 60px; }
+  .hero-wordmark { font-size: clamp(56px, 14vw, 100px); letter-spacing: -2px; }
+  .hero-sub { font-size: 11px; letter-spacing: 3px; }
+  .hero-desc { font-size: 14px; }
+
+  /* About strip */
+  .about-strip { padding: 48px 24px; }
+  .about-inner { grid-template-columns: 1fr; gap: 36px; }
+  .about-stat-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .about-stat-num { font-size: 36px; }
+
+  /* Brands grid */
+  .section { padding: 0 24px 72px; }
+  .brands-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+  .brand-card { padding: 28px 24px; }
+  .brand-card-name { font-size: 26px; }
+
+  /* How it works */
+  .how-grid { grid-template-columns: 1fr; gap: 2px; }
+  .how-number { font-size: 56px; }
+
+  /* Divider */
   .divider { padding: 0 24px; }
-  .brands-grid { grid-template-columns: 1fr; }
-  .how-grid { grid-template-columns: 1fr; }
-  .about-inner { grid-template-columns: 1fr; gap: 40px; }
-  footer { padding: 24px; flex-direction: column; text-align: center; }
-  .hero-wordmark { letter-spacing: -2px; }
+
+  /* Footer */
+  footer { padding: 24px; flex-direction: column; text-align: center; gap: 8px; }
 }
+
+/* ── MOBILE (480px) ──────────────────────────────── */
+@media (max-width: 480px) {
+  /* Nav */
+  nav { padding: 0 20px; height: 52px; }
+  .nav-logo { font-size: 18px; }
+
+  /* Hero */
+  .hero { padding: 72px 20px 52px; }
+  .hero-eyebrow { font-size: 10px; letter-spacing: 2px; gap: 8px; }
+  .hero-eyebrow::before, .hero-eyebrow::after { width: 20px; }
+  .hero-wordmark { font-size: clamp(52px, 18vw, 80px); letter-spacing: -2px; line-height: 0.85; }
+  .hero-sub { font-size: 10px; letter-spacing: 2px; margin-bottom: 16px; }
+  .hero-desc { font-size: 13px; line-height: 1.7; margin-bottom: 32px; }
+  .hero-cta { padding: 12px 22px; font-size: 12px; }
+
+  /* About strip */
+  .about-strip { padding: 36px 20px; margin-bottom: 60px; }
+  .section-label { font-size: 9px; }
+  .section-title { font-size: 28px; letter-spacing: -0.5px; }
+  .section-desc { font-size: 13px; margin-bottom: 40px; }
+  .about-stat-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .about-stat-num { font-size: 32px; letter-spacing: -1px; }
+  .about-stat-label { font-size: 10px; }
+
+  /* Brands grid — single column */
+  .section { padding: 0 20px 56px; }
+  .brands-grid { grid-template-columns: 1fr; gap: 2px; }
+  .brand-card { padding: 24px 20px; }
+  .brand-card-name { font-size: 28px; letter-spacing: -0.5px; }
+  .brand-card-tagline { font-size: 11px; }
+  .brand-card-desc { font-size: 12px; line-height: 1.6; max-width: 100%; margin-bottom: 16px; }
+  .brand-card-categories { gap: 5px; margin-bottom: 20px; }
+  .brand-category-pill { font-size: 9px; padding: 3px 8px; }
+  .brand-card-cta { font-size: 11px; }
+  .brand-card-status { top: 24px; right: 20px; font-size: 9px; }
+  .brand-card-tag { font-size: 9px; letter-spacing: 2px; margin-bottom: 14px; }
+
+  /* How it works */
+  .how-card { padding: 28px 24px; }
+  .how-number { font-size: 48px; letter-spacing: -2px; margin-bottom: 14px; }
+  .how-title { font-size: 16px; }
+  .how-desc { font-size: 13px; }
+
+  /* Footer */
+  footer { padding: 20px; }
+  .footer-logo { font-size: 14px; }
+  .footer-copy { font-size: 11px; }
+}
+
 </style>
 </head>
 <body>
@@ -633,8 +716,8 @@ footer {
       <div class="brand-card-cta">Browse Catalog →</div>
     </a>
 
-    <!-- Majestic Pure -->
-  <a href="https://majestic-pure-influencer-management.vercel.app/" class="brand-card" style="--accent-color: #7B5EA7;">
+    <!-- Majestic Pure — Live -->
+    <a href="https://majestic-pure-influencer-management.vercel.app/" class="brand-card" style="--accent-color: #7B5EA7;">
       <div class="brand-card-status live">Live</div>
       <div class="brand-card-tag">Wellness</div>
       <div class="brand-card-name">Majestic<br>Pure</div>
@@ -646,10 +729,10 @@ footer {
         <span class="brand-category-pill">Aromatherapy</span>
       </div>
       <div class="brand-card-cta">Browse Catalog →</div>
-  </a>
+    </a>
 
-    <!-- Villain -->
-  <a href="https://villain-influencer-management.vercel.app/" class="brand-card" style="--accent-color: #C9A84C;"> 
+    <!-- Villain — Live -->
+    <a href="https://villain-influencer-management.vercel.app/" class="brand-card" style="--accent-color: #C0392B;">
       <div class="brand-card-status live">Live</div>
       <div class="brand-card-tag">Fragrance</div>
       <div class="brand-card-name">Villain</div>
@@ -661,11 +744,11 @@ footer {
         <span class="brand-category-pill">Deodorant</span>
       </div>
       <div class="brand-card-cta">Browse Catalog →</div>
-  </a>
+    </a>
 
-    <!-- My Fitness -->
-    <a href="https://my-fitness-influencer-management.vercel.app/" class="brand-card" style="--accent-color: #E8732A;">
-      <div class="brand-card-status live">Live</div>
+    <!-- MyFitness — Coming Soon -->
+    <div class="brand-card coming-soon" style="--accent-color: #E8732A;">
+      <div class="brand-card-status">Coming Soon</div>
       <div class="brand-card-tag">Fitness & Lifestyle</div>
       <div class="brand-card-name">My<br>Fitness</div>
       <div class="brand-card-tagline">Taste · Nutrition · Community</div>
@@ -676,8 +759,7 @@ footer {
         <span class="brand-category-pill">Fitness</span>
         <span class="brand-category-pill">Lifestyle</span>
       </div>
-      <div class="brand-card-cta">Browse Catalog →</div>
-    </a>
+      <div class="brand-card-cta">Coming Soon</div>
     </div>
 
   </div>
