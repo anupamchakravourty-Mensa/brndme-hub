@@ -53,7 +53,7 @@ nav {
   border-bottom: 1px solid var(--border);
   background: rgba(10,10,10,0.92);
   backdrop-filter: blur(12px);
-  min-width: 0;
+  overflow: hidden;
 }
 .nav-logo {
   font-family: 'Syne', sans-serif;
@@ -61,8 +61,8 @@ nav {
   font-weight: 800;
   letter-spacing: -0.5px;
   color: var(--white);
-  white-space: nowrap;
   flex-shrink: 0;
+  white-space: nowrap;
 }
 .nav-logo span { color: var(--lime); }
 .nav-tag {
@@ -72,10 +72,6 @@ nav {
   color: var(--muted);
   font-weight: 500;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
-  padding-left: 16px;
 }
 
 /* ── HERO ───────────────────────────────────────── */
@@ -540,7 +536,7 @@ footer {
 @media (max-width: 768px) {
   /* Nav */
   nav { padding: 0 20px; height: 56px; }
-.nav-tag { display: none; }
+.nav-tag { display: none !important; }
 
   /* Hero */
   .hero { padding: 80px 24px 60px; }
@@ -576,7 +572,7 @@ footer {
   /* Nav */
   nav { padding: 0 16px; height: 52px; }
 .nav-logo { font-size: 17px; }
-.nav-tag { display: none; }
+.nav-tag { display: none !important; }
 
   /* Hero */
   .hero { padding: 72px 20px 52px; }
@@ -628,7 +624,7 @@ footer {
 <!-- Nav -->
 <nav>
   <div class="nav-logo">BRND<span>·</span>ME</div>
-  <div class="nav-tag">Influencer Gifting Program</div>
+  <div class="nav-tag" aria-hidden="true">Influencer Gifting Program</div>
 </nav>
 
 <!-- Hero -->
