@@ -41,38 +41,20 @@ body {
 }
 
 /* ── NAV ────────────────────────────────────────── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 0 48px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border);
-  background: rgba(10,10,10,0.92);
-  backdrop-filter: blur(12px);
-  overflow: hidden;
-}
-.nav-logo {
-  font-family: 'Syne', sans-serif;
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  color: var(--white);
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-.nav-logo span { color: var(--lime); }
-.nav-tag {
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-weight: 500;
-  white-space: nowrap;
-}
+<nav>
+  <div class="nav-logo">BRND<span>·</span>ME</div>
+  <div class="nav-tag" style="display:none;" id="navTag">Influencer Gifting Program</div>
+  <a href="#brands" style="display:none;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#6B6560;font-weight:600;border:1px solid #2A2A2A;padding:5px 10px;border-radius:2px;text-decoration:none;" id="navCta">↓ Brands</a>
+  <script>
+    if(window.innerWidth >= 768){
+      document.getElementById('navTag').style.display='block';
+      document.getElementById('navCta').style.display='none';
+    } else {
+      document.getElementById('navTag').style.display='none';
+      document.getElementById('navCta').style.display='inline-block';
+    }
+  </script>
+</nav>
 
 /* ── HERO ───────────────────────────────────────── */
 .hero {
