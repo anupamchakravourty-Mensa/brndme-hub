@@ -41,20 +41,34 @@ body {
 }
 
 /* ── NAV ────────────────────────────────────────── */
-<nav>
-  <div class="nav-logo">BRND<span>·</span>ME</div>
-  <div class="nav-tag" style="display:none;" id="navTag">Influencer Gifting Program</div>
-  <a href="#brands" style="display:none;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#6B6560;font-weight:600;border:1px solid #2A2A2A;padding:5px 10px;border-radius:2px;text-decoration:none;" id="navCta">↓ Brands</a>
-  <script>
-    if(window.innerWidth >= 768){
-      document.getElementById('navTag').style.display='block';
-      document.getElementById('navCta').style.display='none';
-    } else {
-      document.getElementById('navTag').style.display='none';
-      document.getElementById('navCta').style.display='inline-block';
-    }
-  </script>
-</nav>
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 48px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(12px);
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--white);
+}
+.nav-logo span { color: var(--lime); }
+.nav-tag {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
 
 /* ── HERO ───────────────────────────────────────── */
 .hero {
@@ -517,8 +531,8 @@ footer {
 /* ── TABLET (768px) ──────────────────────────────── */
 @media (max-width: 768px) {
   /* Nav */
-  nav { padding: 0 20px; height: 56px; }
-.nav-tag { display: none !important; }
+  nav { padding: 0 24px; height: 56px; }
+  .nav-tag { display: none; }
 
   /* Hero */
   .hero { padding: 80px 24px 60px; }
@@ -552,9 +566,8 @@ footer {
 /* ── MOBILE (480px) ──────────────────────────────── */
 @media (max-width: 480px) {
   /* Nav */
-  nav { padding: 0 16px; height: 52px; }
-.nav-logo { font-size: 17px; }
-.nav-tag { display: none !important; }
+  nav { padding: 0 20px; height: 52px; }
+  .nav-logo { font-size: 18px; }
 
   /* Hero */
   .hero { padding: 72px 20px 52px; }
@@ -606,7 +619,7 @@ footer {
 <!-- Nav -->
 <nav>
   <div class="nav-logo">BRND<span>·</span>ME</div>
-  <div class="nav-tag" aria-hidden="true">Influencer Gifting Program</div>
+  <div class="nav-tag">Influencer Gifting Program</div>
 </nav>
 
 <!-- Hero -->
