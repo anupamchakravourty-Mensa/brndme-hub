@@ -11,46 +11,82 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
 body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);min-height:100vh;-webkit-font-smoothing:antialiased;}
 
-/* ── NAV ── */
+/* ── NAV — original layout: logo left, tag right ── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   height:64px;padding:0 48px;
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  align-items:center;
+  display:flex;align-items:center;justify-content:space-between;
   border-bottom:1px solid var(--border);
-  background:rgba(10,10,10,0.95);
+  background:rgba(10,10,10,0.92);
   backdrop-filter:blur(12px);
-  overflow:hidden;
 }
-.nav-left{grid-column:1;display:flex;align-items:center;}
 .nav-logo{
-  grid-column:2;
   font-family:'Syne',sans-serif;
   font-size:20px;font-weight:800;letter-spacing:-0.5px;
-  color:var(--white);white-space:nowrap;text-align:center;
+  color:var(--white);white-space:nowrap;flex-shrink:0;
 }
 .nav-logo span{color:var(--lime);}
-.nav-right{
-  grid-column:3;display:flex;align-items:center;justify-content:flex-end;
-}
 .nav-tag{
   font-size:11px;letter-spacing:2px;text-transform:uppercase;
   color:var(--muted);font-weight:500;white-space:nowrap;
 }
 
 /* ── HERO ── */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 48px 80px;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:0.3;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 100%);}
-.hero::after{content:'';position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(200,255,0,0.06) 0%,transparent 70%);pointer-events:none;}
-.hero-content{position:relative;z-index:1;max-width:900px;width:100%;}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:32px;}
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  padding:120px 48px 80px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:60px 60px;opacity:0.3;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 100%);
+}
+.hero::after{
+  content:'';position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(200,255,0,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-content{
+  position:relative;z-index:1;
+  width:100%;max-width:900px;
+  display:flex;flex-direction:column;align-items:center;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted);font-weight:500;margin-bottom:32px;
+}
 .hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:32px;height:1px;background:var(--border);}
-.hero-wordmark{font-family:'Syne',sans-serif;font-size:clamp(64px,12vw,140px);font-weight:800;line-height:0.9;letter-spacing:-4px;color:var(--white);margin-bottom:8px;}
+.hero-wordmark{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(52px,11vw,140px);
+  font-weight:800;line-height:0.9;letter-spacing:-4px;
+  color:var(--white);margin-bottom:8px;
+  width:100%;text-align:center;
+}
 .hero-wordmark .dot{color:var(--lime);}
-.hero-sub{font-family:'Syne',sans-serif;font-size:clamp(12px,2vw,18px);font-weight:400;color:var(--muted);letter-spacing:4px;text-transform:uppercase;margin-bottom:40px;}
-.hero-desc{font-size:16px;color:rgba(240,235,227,0.55);line-height:1.75;max-width:520px;margin:0 auto 48px;font-weight:300;}
-.hero-cta{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:var(--lime);color:var(--black);font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all 0.2s;}
+.hero-sub{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(12px,2vw,18px);font-weight:400;
+  color:var(--muted);letter-spacing:4px;text-transform:uppercase;
+  margin-bottom:40px;
+}
+.hero-desc{
+  font-size:16px;color:rgba(240,235,227,0.55);line-height:1.75;
+  max-width:520px;margin:0 auto 48px;font-weight:300;
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 28px;background:var(--lime);color:var(--black);
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;
+  text-decoration:none;border-radius:2px;transition:all 0.2s;
+}
 .hero-cta:hover{background:var(--white);transform:translateY(-2px);}
 .hero-cta-arrow{transition:transform 0.2s;}
 .hero-cta:hover .hero-cta-arrow{transform:translateX(4px);}
@@ -118,49 +154,52 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
 
 /* TABLET — 768px */
 @media(max-width:768px){
+  /* Nav — original, just hide tag */
   nav{padding:0 24px;height:56px;}
   .nav-tag{display:none;}
-  .nav-right{display:none;}
+  /* Hero */
   .hero{padding:80px 24px 60px;}
   .hero-wordmark{letter-spacing:-2px;}
   .hero-sub{font-size:11px;letter-spacing:3px;}
   .hero-desc{font-size:14px;}
+  /* About */
   .about-strip{padding:48px 24px;}
   .about-inner{grid-template-columns:1fr;gap:36px;}
   .about-stat-grid{grid-template-columns:repeat(2,1fr);gap:24px;}
   .about-stat-num{font-size:36px;}
+  /* Sections */
   .section{padding:0 24px 72px;}
   .brands-grid{grid-template-columns:1fr 1fr;gap:2px;}
   .brand-card{padding:28px 24px;}
   .brand-card-name{font-size:26px;}
+  /* How */
   .how-grid{grid-template-columns:1fr;gap:2px;}
   .how-number{font-size:56px;}
+  /* Misc */
   .divider{padding:0 24px;}
   footer{padding:24px;flex-direction:column;text-align:center;gap:8px;}
 }
 
 /* MOBILE — 480px */
 @media(max-width:480px){
-  nav{
-    padding:0 20px;height:52px;
-    grid-template-columns:1fr;
-    justify-items:center;
-  }
-  .nav-left{display:none;}
-  .nav-right{display:none;}
-  .nav-logo{
-    grid-column:1;
-    font-size:17px;
-    letter-spacing:-0.3px;
-  }
-  .hero{padding:72px 16px 52px;}
+  /* Nav — original layout preserved, just tighter */
+  nav{padding:0 20px;height:52px;}
+  .nav-logo{font-size:18px;}
+  .nav-tag{display:none;}
+  /* Hero — key fix: wordmark scales down with vw */
+  .hero{padding:72px 20px 52px;}
   .hero-content{width:100%;}
   .hero-eyebrow{font-size:10px;letter-spacing:2px;}
   .hero-eyebrow::before,.hero-eyebrow::after{width:16px;}
-  .hero-wordmark{letter-spacing:-2px;line-height:0.9;}
+  .hero-wordmark{
+    font-size:clamp(42px,11vw,72px);
+    letter-spacing:-2px;
+    line-height:0.95;
+  }
   .hero-sub{font-size:10px;letter-spacing:2px;margin-bottom:20px;}
-  .hero-desc{font-size:13px;line-height:1.7;margin-bottom:32px;max-width:100%;padding:0;}
+  .hero-desc{font-size:13px;line-height:1.7;margin-bottom:32px;max-width:100%;}
   .hero-cta{padding:12px 20px;font-size:12px;}
+  /* About */
   .about-strip{padding:36px 16px;margin-bottom:60px;}
   .section{padding:0 16px 56px;}
   .section-label{font-size:9px;}
@@ -169,6 +208,7 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
   .about-stat-grid{grid-template-columns:repeat(2,1fr);gap:20px;}
   .about-stat-num{font-size:32px;letter-spacing:-1px;}
   .about-stat-label{font-size:10px;}
+  /* Cards */
   .brands-grid{grid-template-columns:1fr;gap:2px;}
   .brand-card{padding:24px 16px;}
   .brand-card-name{font-size:28px;letter-spacing:-0.5px;}
@@ -179,10 +219,12 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
   .brand-card-cta{font-size:11px;}
   .brand-card-status{top:24px;right:16px;font-size:9px;}
   .brand-card-tag{font-size:9px;letter-spacing:2px;margin-bottom:14px;}
+  /* How */
   .how-card{padding:28px 20px;}
   .how-number{font-size:48px;letter-spacing:-2px;margin-bottom:14px;}
   .how-title{font-size:16px;}
   .how-desc{font-size:13px;}
+  /* Misc */
   .divider{padding:0 16px;margin-bottom:48px;}
   footer{padding:16px;}
   .footer-logo{font-size:14px;}
@@ -192,14 +234,13 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
 </head>
 <body>
 
+<!-- Nav — logo left, tag right, exactly as original -->
 <nav>
-  <div class="nav-left"></div>
   <div class="nav-logo">BRND<span>·</span>ME</div>
-  <div class="nav-right">
-    <div class="nav-tag">Influencer Gifting Program</div>
-  </div>
+  <div class="nav-tag">Influencer Gifting Program</div>
 </nav>
 
+<!-- Hero -->
 <section class="hero">
   <div class="hero-content">
     <div class="hero-eyebrow">Exclusive · By Invitation</div>
@@ -212,6 +253,7 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
 
 <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
 
+<!-- About Strip -->
 <div class="about-strip">
   <div class="about-inner">
     <div>
@@ -228,6 +270,7 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
   </div>
 </div>
 
+<!-- Brands -->
 <section class="section" id="brands">
   <div class="section-label">Our Brands</div>
   <h2 class="section-title">Choose your <em>brand</em></h2>
@@ -289,6 +332,7 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
 
 <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
 
+<!-- How It Works -->
 <section class="section">
   <div class="section-label">How It Works</div>
   <h2 class="section-title">Three steps to<br>your free <em>gift</em></h2>
@@ -300,6 +344,7 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
   </div>
 </section>
 
+<!-- Footer -->
 <footer>
   <div class="footer-logo">BRND<span>·</span>ME</div>
   <div class="footer-copy">© 2026 BRND.ME · Influencer Gifting Program · All brands reserved</div>
