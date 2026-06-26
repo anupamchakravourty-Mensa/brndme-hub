@@ -6,817 +6,264 @@
 <title>BRND.ME — Influencer Gifting Program</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+:root{--black:#0A0A0A;--card:#141414;--card-h:#1E1E1E;--border:#2A2A2A;--white:#F0EBE3;--muted:#6B6560;--lime:#C8FF00;}
+*{-webkit-tap-highlight-color:transparent;}button,a{touch-action:manipulation;}input,textarea,select{font-size:16px!important;}body{-webkit-text-size-adjust:100%;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);min-height:100vh;-webkit-font-smoothing:antialiased;}
 
-/* ── TOKENS ─────────────────────────────────────── */
-:root {
-  --black:    #0A0A0A;
-  --card:     #141414;
-  --card-h:   #1E1E1E;
-  --border:   #2A2A2A;
-  --white:    #F0EBE3;
-  --muted:    #6B6560;
-  --lime:     #C8FF00;
-  --lime-dim: rgba(200,255,0,0.08);
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);}
+.nav-logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-0.5px;color:var(--white);white-space:nowrap;flex-shrink:0;}
+.nav-logo span{color:var(--lime);}
+.nav-tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:500;white-space:nowrap;}
 
-  /* Brand accent colours */
-  --ishin-color: #8B1A2B;
-  --bh-color:    #1A3D2B;
-}
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 48px 80px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:0.3;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 100%);}
+.hero::after{content:'';position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(200,255,0,0.06) 0%,transparent 70%);pointer-events:none;}
+.hero-content{position:relative;z-index:1;max-width:900px;width:100%;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:32px;}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:32px;height:1px;background:var(--border);}
+.hero-wordmark{font-family:'Syne',sans-serif;font-size:clamp(64px,12vw,140px);font-weight:800;line-height:0.9;letter-spacing:-4px;color:var(--white);margin-bottom:8px;}
+.hero-wordmark .dot{color:var(--lime);}
+.hero-sub{font-family:'Syne',sans-serif;font-size:clamp(12px,2vw,18px);font-weight:400;color:var(--muted);letter-spacing:4px;text-transform:uppercase;margin-bottom:40px;}
+.hero-desc{font-size:16px;color:rgba(240,235,227,0.55);line-height:1.75;max-width:520px;margin:0 auto 48px;font-weight:300;}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:var(--lime);color:var(--black);font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all 0.2s;}
+.hero-cta:hover{background:var(--white);transform:translateY(-2px);}
+.hero-cta-arrow{transition:transform 0.2s;}
+.hero-cta:hover .hero-cta-arrow{transform:translateX(4px);}
 
-/* ── RESET ──────────────────────────────────────── */
+/* ── DIVIDER ── */
+.divider{display:flex;align-items:center;gap:16px;padding:0 48px;margin:0 0 80px;}
+.divider-line{flex:1;height:1px;background:var(--border);}
+.divider-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);}
 
-/* ── TOUCH OPTIMISATIONS ──────────────────────────── */
-* { -webkit-tap-highlight-color: transparent; }
-button, a { touch-action: manipulation; }
-input, textarea, select { font-size: 16px !important; } /* Prevents iOS zoom on focus */
-body { -webkit-text-size-adjust: 100%; }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--black);
-  color: var(--white);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-}
+/* ── SECTION ── */
+.section{max-width:1200px;margin:0 auto;padding:0 48px 100px;}
+.section-label{display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--lime);font-weight:600;margin-bottom:16px;}
+.section-label::after{content:'';flex:1;max-width:40px;height:1px;background:var(--lime);opacity:0.4;}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,52px);font-weight:700;line-height:1.1;letter-spacing:-1px;color:var(--white);margin-bottom:16px;}
+.section-title em{font-style:normal;color:var(--lime);}
+.section-desc{font-size:15px;color:var(--muted);line-height:1.7;max-width:480px;margin-bottom:56px;font-weight:300;}
 
-/* ── NAV ────────────────────────────────────────── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 0 48px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border);
-  background: rgba(10,10,10,0.92);
-  backdrop-filter: blur(12px);
-}
-.nav-logo {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(13px, 4.5vw, 20px);
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  color: var(--white);
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-.nav-logo span { color: var(--lime); }
-.nav-tag {
-  font-size: clamp(8px, 2.2vw, 11px);
-  letter-spacing: clamp(0.5px, 0.5vw, 2px);
-  text-transform: uppercase;
-  color: var(--muted);
-  font-weight: 500;
-  white-space: nowrap;
-}
+/* ── BRAND CARDS ── */
+.brands-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2px;}
+.brand-card{background:var(--card);border:1px solid var(--border);padding:40px;position:relative;overflow:hidden;text-decoration:none;display:block;transition:background 0.25s,transform 0.25s;cursor:pointer;}
+.brand-card:hover{background:var(--card-h);transform:translateY(-3px);}
+.brand-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-color,var(--lime));transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+.brand-card:hover::before{transform:scaleX(1);}
+.brand-card::after{content:'';position:absolute;bottom:32px;right:32px;width:40px;height:40px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:border-color 0.25s,width 0.25s,height 0.25s;}
+.brand-card:hover::after{border-color:var(--accent-color,var(--lime));width:48px;height:48px;}
+.brand-card-tag{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:8px;}
+.brand-card-tag::before{content:'·';color:var(--accent-color,var(--lime));font-size:18px;line-height:1;}
+.brand-card-name{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--white);line-height:1;letter-spacing:-1px;margin-bottom:8px;}
+.brand-card-tagline{font-size:12px;color:var(--accent-color,var(--lime));letter-spacing:1.5px;text-transform:uppercase;font-weight:500;margin-bottom:20px;}
+.brand-card-desc{font-size:13px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:32px;max-width:300px;}
+.brand-card-categories{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:32px;}
+.brand-category-pill{padding:4px 10px;border:1px solid var(--border);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);border-radius:2px;font-weight:500;}
+.brand-card-cta{display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent-color,var(--lime));transition:gap 0.2s;}
+.brand-card:hover .brand-card-cta{gap:14px;}
+.brand-card-status{position:absolute;top:40px;right:40px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:500;}
+.brand-card-status.live{color:var(--lime);}
+.brand-card-status.live::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--lime);margin-right:5px;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
 
-/* ── HERO ───────────────────────────────────────── */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 120px 48px 80px;
-  position: relative;
-  overflow: hidden;
-}
+/* ── HOW IT WORKS ── */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.how-card{background:var(--card);border:1px solid var(--border);padding:36px 32px;position:relative;}
+.how-number{font-family:'Syne',sans-serif;font-size:72px;font-weight:800;color:var(--border);line-height:1;margin-bottom:20px;letter-spacing:-3px;}
+.how-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:-0.3px;}
+.how-desc{font-size:13px;color:var(--muted);line-height:1.7;font-weight:300;}
+.how-dot{position:absolute;top:36px;right:32px;width:8px;height:8px;border-radius:50%;background:var(--lime);opacity:0.4;}
 
-/* Grid background */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 60px 60px;
-  opacity: 0.3;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
-}
+/* ── ABOUT STRIP ── */
+.about-strip{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 48px;margin-bottom:100px;}
+.about-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.about-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.about-stat-num{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;color:var(--white);line-height:1;letter-spacing:-2px;}
+.about-stat-num span{color:var(--lime);}
+.about-stat-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:6px;font-weight:500;}
 
-/* Lime glow */
-.hero::after {
-  content: '';
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(200,255,0,0.06) 0%, transparent 70%);
-  pointer-events: none;
-}
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.footer-logo{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;letter-spacing:-0.5px;color:var(--white);}
+.footer-logo span{color:var(--lime);}
+.footer-copy{font-size:12px;color:var(--muted);letter-spacing:0.5px;}
 
-.hero-content { position: relative; z-index: 1; max-width: 900px; }
+/* ════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════ */
 
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-weight: 500;
-  margin-bottom: 32px;
-}
-.hero-eyebrow::before,
-.hero-eyebrow::after {
-  content: '';
-  display: block;
-  width: 32px;
-  height: 1px;
-  background: var(--border);
+/* TABLET — 768px */
+@media(max-width:768px){
+  nav{padding:0 24px;height:56px;}
+  .nav-tag{display:none;}
+  .hero{padding:80px 24px 60px;}
+  .hero-wordmark{letter-spacing:-2px;}
+  .hero-sub{font-size:11px;letter-spacing:3px;}
+  .hero-desc{font-size:14px;}
+  .about-strip{padding:48px 24px;}
+  .about-inner{grid-template-columns:1fr;gap:36px;}
+  .about-stat-grid{grid-template-columns:repeat(2,1fr);gap:24px;}
+  .about-stat-num{font-size:36px;}
+  .section{padding:0 24px 72px;}
+  .brands-grid{grid-template-columns:1fr 1fr;gap:2px;}
+  .brand-card{padding:28px 24px;}
+  .brand-card-name{font-size:26px;}
+  .how-grid{grid-template-columns:1fr;gap:2px;}
+  .how-number{font-size:56px;}
+  .divider{padding:0 24px;}
+  footer{padding:24px;flex-direction:column;text-align:center;gap:8px;}
 }
 
-.hero-wordmark {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(72px, 12vw, 140px);
-  font-weight: 800;
-  line-height: 0.9;
-  letter-spacing: -4px;
-  color: var(--white);
-  margin-bottom: 8px;
+/* MOBILE — 480px */
+@media(max-width:480px){
+  nav{padding:0 16px;height:52px;}
+  .nav-tag{display:none;}
+  .hero{padding:72px 16px 52px;}
+  .hero-content{width:100%;}
+  .hero-eyebrow{font-size:10px;letter-spacing:2px;}
+  .hero-eyebrow::before,.hero-eyebrow::after{width:16px;}
+  .hero-wordmark{letter-spacing:-2px;line-height:0.9;}
+  .hero-sub{font-size:10px;letter-spacing:2px;margin-bottom:20px;}
+  .hero-desc{font-size:13px;line-height:1.7;margin-bottom:32px;max-width:100%;padding:0;}
+  .hero-cta{padding:12px 20px;font-size:12px;}
+  .about-strip{padding:36px 16px;margin-bottom:60px;}
+  .section{padding:0 16px 56px;}
+  .section-label{font-size:9px;}
+  .section-title{letter-spacing:-0.5px;}
+  .section-desc{font-size:13px;margin-bottom:36px;}
+  .about-stat-grid{grid-template-columns:repeat(2,1fr);gap:20px;}
+  .about-stat-num{font-size:32px;letter-spacing:-1px;}
+  .about-stat-label{font-size:10px;}
+  .brands-grid{grid-template-columns:1fr;gap:2px;}
+  .brand-card{padding:24px 16px;}
+  .brand-card-name{font-size:28px;letter-spacing:-0.5px;}
+  .brand-card-tagline{font-size:11px;}
+  .brand-card-desc{font-size:12px;line-height:1.6;max-width:100%;margin-bottom:16px;}
+  .brand-card-categories{gap:5px;margin-bottom:20px;}
+  .brand-category-pill{font-size:9px;padding:3px 8px;}
+  .brand-card-cta{font-size:11px;}
+  .brand-card-status{top:24px;right:16px;font-size:9px;}
+  .brand-card-tag{font-size:9px;letter-spacing:2px;margin-bottom:14px;}
+  .how-card{padding:28px 20px;}
+  .how-number{font-size:48px;letter-spacing:-2px;margin-bottom:14px;}
+  .how-title{font-size:16px;}
+  .how-desc{font-size:13px;}
+  .divider{padding:0 16px;margin-bottom:48px;}
+  footer{padding:16px;}
+  .footer-logo{font-size:14px;}
+  .footer-copy{font-size:11px;}
 }
-.hero-wordmark .dot { color: var(--lime); }
-
-.hero-sub {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(14px, 2vw, 18px);
-  font-weight: 400;
-  color: var(--muted);
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  margin-bottom: 40px;
-}
-
-.hero-desc {
-  font-size: 16px;
-  color: rgba(240,235,227,0.55);
-  line-height: 1.75;
-  max-width: 520px;
-  margin: 0 auto 48px;
-  font-weight: 300;
-}
-
-.hero-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 28px;
-  background: var(--lime);
-  color: var(--black);
-  font-family: 'Syne', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-radius: 2px;
-  transition: all 0.2s;
-}
-.hero-cta:hover {
-  background: var(--white);
-  transform: translateY(-2px);
-}
-.hero-cta-arrow { transition: transform 0.2s; }
-.hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
-
-/* ── DIVIDER ────────────────────────────────────── */
-.divider {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 0 48px;
-  margin: 0 0 80px;
-}
-.divider-line { flex: 1; height: 1px; background: var(--border); }
-.divider-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--lime);
-}
-
-/* ── SECTION ────────────────────────────────────── */
-.section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 48px 100px;
-}
-
-.section-label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--lime);
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-.section-label::after {
-  content: '';
-  flex: 1;
-  max-width: 40px;
-  height: 1px;
-  background: var(--lime);
-  opacity: 0.4;
-}
-
-.section-title {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(32px, 4vw, 52px);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -1px;
-  color: var(--white);
-  margin-bottom: 16px;
-}
-.section-title em {
-  font-style: normal;
-  color: var(--lime);
-}
-
-.section-desc {
-  font-size: 15px;
-  color: var(--muted);
-  line-height: 1.7;
-  max-width: 480px;
-  margin-bottom: 56px;
-  font-weight: 300;
-}
-
-/* ── BRAND CARDS ────────────────────────────────── */
-.brands-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2px;
-}
-
-.brand-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 40px;
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
-  display: block;
-  transition: background 0.25s, transform 0.25s;
-  cursor: pointer;
-}
-.brand-card:hover {
-  background: var(--card-h);
-  transform: translateY(-3px);
-}
-
-/* Accent line at top of card */
-.brand-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--accent-color, var(--lime));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s;
-}
-.brand-card:hover::before { transform: scaleX(1); }
-
-/* Corner decorator */
-.brand-card::after {
-  content: '';
-  position: absolute;
-  bottom: 32px; right: 32px;
-  width: 40px; height: 40px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  transition: border-color 0.25s, width 0.25s, height 0.25s;
-}
-.brand-card:hover::after {
-  border-color: var(--accent-color, var(--lime));
-  width: 48px; height: 48px;
-}
-
-.brand-card-tag {
-  font-size: 10px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-weight: 600;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.brand-card-tag::before {
-  content: '·';
-  color: var(--accent-color, var(--lime));
-  font-size: 18px;
-  line-height: 1;
-}
-
-.brand-card-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 32px;
-  font-weight: 800;
-  color: var(--white);
-  line-height: 1;
-  letter-spacing: -1px;
-  margin-bottom: 8px;
-}
-
-.brand-card-tagline {
-  font-size: 12px;
-  color: var(--accent-color, var(--lime));
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  font-weight: 500;
-  margin-bottom: 20px;
-}
-
-.brand-card-desc {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.7;
-  font-weight: 300;
-  margin-bottom: 32px;
-  max-width: 300px;
-}
-
-.brand-card-categories {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-}
-.brand-category-pill {
-  padding: 4px 10px;
-  border: 1px solid var(--border);
-  font-size: 10px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--muted);
-  border-radius: 2px;
-  font-weight: 500;
-}
-
-.brand-card-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Syne', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--accent-color, var(--lime));
-  transition: gap 0.2s;
-}
-.brand-card:hover .brand-card-cta { gap: 14px; }
-
-.brand-card-status {
-  position: absolute;
-  top: 40px; right: 40px;
-  font-size: 10px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-weight: 500;
-}
-.brand-card-status.live {
-  color: var(--lime);
-}
-.brand-card-status.live::before {
-  content: '';
-  display: inline-block;
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--lime);
-  margin-right: 5px;
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.3; }
-}
-
-/* Coming soon card */
-.brand-card.coming-soon {
-  opacity: 0.45;
-  cursor: default;
-  pointer-events: none;
-}
-
-/* ── HOW IT WORKS ───────────────────────────────── */
-.how-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-  margin-top: 0;
-}
-
-.how-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 36px 32px;
-  position: relative;
-}
-
-.how-number {
-  font-family: 'Syne', sans-serif;
-  font-size: 72px;
-  font-weight: 800;
-  color: var(--border);
-  line-height: 1;
-  margin-bottom: 20px;
-  letter-spacing: -3px;
-}
-
-.how-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 10px;
-  letter-spacing: -0.3px;
-}
-
-.how-desc {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.7;
-  font-weight: 300;
-}
-
-.how-dot {
-  position: absolute;
-  top: 36px; right: 32px;
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--lime);
-  opacity: 0.4;
-}
-
-/* ── ABOUT STRIP ────────────────────────────────── */
-.about-strip {
-  background: var(--card);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 64px 48px;
-  margin-bottom: 100px;
-}
-.about-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-.about-stat-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-}
-.about-stat-num {
-  font-family: 'Syne', sans-serif;
-  font-size: 42px;
-  font-weight: 800;
-  color: var(--white);
-  line-height: 1;
-  letter-spacing: -2px;
-}
-.about-stat-num span { color: var(--lime); }
-.about-stat-label {
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-top: 6px;
-  font-weight: 500;
-}
-
-/* ── FOOTER ─────────────────────────────────────── */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 32px 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-.footer-logo {
-  font-family: 'Syne', sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  color: var(--white);
-}
-.footer-logo span { color: var(--lime); }
-.footer-copy {
-  font-size: 12px;
-  color: var(--muted);
-  letter-spacing: 0.5px;
-}
-
-/* ── RESPONSIVE ─────────────────────────────────── */
-/* ════════════════════════════════════════════════════
-   COMPREHENSIVE MOBILE OVERHAUL — BRND.ME Hub
-   ════════════════════════════════════════════════════ */
-
-/* ── TABLET (768px) ──────────────────────────────── */
-@media (max-width: 768px) {
-  /* Nav */
-  nav { padding: 0 24px; height: 56px; }
-  .nav-tag { display: none; }
-
-  /* Hero */
-  .hero { padding: 80px 24px 60px; }
-  .hero-wordmark { font-size: clamp(56px, 14vw, 100px); letter-spacing: -2px; }
-  .hero-sub { font-size: 11px; letter-spacing: 3px; }
-  .hero-desc { font-size: 14px; }
-
-  /* About strip */
-  .about-strip { padding: 48px 24px; }
-  .about-inner { grid-template-columns: 1fr; gap: 36px; }
-  .about-stat-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-  .about-stat-num { font-size: 36px; }
-
-  /* Brands grid */
-  .section { padding: 0 24px 72px; }
-  .brands-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
-  .brand-card { padding: 28px 24px; }
-  .brand-card-name { font-size: 26px; }
-
-  /* How it works */
-  .how-grid { grid-template-columns: 1fr; gap: 2px; }
-  .how-number { font-size: 56px; }
-
-  /* Divider */
-  .divider { padding: 0 24px; }
-
-  /* Footer */
-  footer { padding: 24px; flex-direction: column; text-align: center; gap: 8px; }
-}
-
-/* ── MOBILE (480px) ──────────────────────────────── */
-@media (max-width: 480px) {
-  /* Nav */
-  nav { padding: 0 14px; height: 52px; }
-.nav-logo { font-size: 15px; letter-spacing: -0.3px; }
-.nav-tag { font-size: 9px; letter-spacing: 1px; }
-
-  /* Hero */
-  .hero { padding: 72px 20px 52px; }
-  .hero-desc { font-size: 13px; line-height: 1.7; padding: 0 4px; word-break: break-word; overflow-wrap: break-word; }
-  .hero-eyebrow { font-size: 10px; letter-spacing: 2px; gap: 8px; }
-  .hero-eyebrow::before, .hero-eyebrow::after { width: 20px; }
-  .hero-wordmark { font-size: clamp(52px, 18vw, 80px); letter-spacing: -2px; line-height: 0.85; }
-  .hero-sub { font-size: 10px; letter-spacing: 2px; margin-bottom: 16px; }
-  .hero-desc { font-size: 13px; line-height: 1.7; margin-bottom: 32px; }
-  .hero-cta { padding: 12px 22px; font-size: 12px; }
-
-  /* About strip */
-  .about-strip { padding: 36px 20px; margin-bottom: 60px; }
-  .section-label { font-size: 9px; }
-  .section-title { font-size: 28px; letter-spacing: -0.5px; }
-  .section-desc { font-size: 13px; margin-bottom: 40px; }
-  .about-stat-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .about-stat-num { font-size: 32px; letter-spacing: -1px; }
-  .about-stat-label { font-size: 10px; }
-
-  /* Brands grid — single column */
-  .section { padding: 0 20px 56px; }
-  .brands-grid { grid-template-columns: 1fr; gap: 2px; }
-  .brand-card { padding: 24px 20px; }
-  .brand-card-name { font-size: 28px; letter-spacing: -0.5px; }
-  .brand-card-tagline { font-size: 11px; }
-  .brand-card-desc { font-size: 12px; line-height: 1.6; max-width: 100%; margin-bottom: 16px; }
-  .brand-card-categories { gap: 5px; margin-bottom: 20px; }
-  .brand-category-pill { font-size: 9px; padding: 3px 8px; }
-  .brand-card-cta { font-size: 11px; }
-  .brand-card-status { top: 24px; right: 20px; font-size: 9px; }
-  .brand-card-tag { font-size: 9px; letter-spacing: 2px; margin-bottom: 14px; }
-
-  /* How it works */
-  .how-card { padding: 28px 24px; }
-  .how-number { font-size: 48px; letter-spacing: -2px; margin-bottom: 14px; }
-  .how-title { font-size: 16px; }
-  .how-desc { font-size: 13px; }
-
-  /* Footer */
-  footer { padding: 20px; }
-  .footer-logo { font-size: 14px; }
-  .footer-copy { font-size: 11px; }
-}
-
-@media (max-width: 360px) {
-  nav { padding: 0 12px; height: 50px; }
-  .nav-logo { font-size: 13px; letter-spacing: 0; }
-  .nav-tag { font-size: 8px; letter-spacing: 0.5px; }
-  .hero { padding: 68px 16px 48px; }
-  .hero-wordmark { font-size: 48px; letter-spacing: -1.5px; }
-  .hero-desc { font-size: 13px; padding: 0; }
-  .section { padding: 0 16px 56px; }
-  .about-strip { padding: 32px 16px; }
-}
-
 </style>
 </head>
 <body>
 
-<!-- Nav -->
 <nav>
   <div class="nav-logo">BRND<span>·</span>ME</div>
   <div class="nav-tag">Influencer Gifting Program</div>
 </nav>
 
-<!-- Hero -->
 <section class="hero">
   <div class="hero-content">
     <div class="hero-eyebrow">Exclusive · By Invitation</div>
     <div class="hero-wordmark">BRND<span class="dot">·</span>ME</div>
     <div class="hero-sub">Influencer Gifting Program</div>
-    <p class="hero-desc">
-      Welcome to the official gifting portal for BRND.ME brands. Browse our portfolio of health, wellness and lifestyle brands — and request products you'd love to share with your community.
-    </p>
-    <a href="#brands" class="hero-cta">
-      Explore Brands
-      <span class="hero-cta-arrow">→</span>
-    </a>
+    <p class="hero-desc">Welcome to the official gifting portal for BRND.ME brands. Browse our portfolio of health, wellness and lifestyle brands — and request products you'd love to share with your community.</p>
+    <a href="#brands" class="hero-cta">Explore Brands <span class="hero-cta-arrow">→</span></a>
   </div>
 </section>
 
-<!-- Divider -->
-<div class="divider">
-  <div class="divider-line"></div>
-  <div class="divider-dot"></div>
-  <div class="divider-line"></div>
-</div>
+<div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
 
-<!-- About Strip -->
 <div class="about-strip">
   <div class="about-inner">
     <div>
       <div class="section-label">About BRND·ME</div>
       <h2 class="section-title" style="margin-bottom:16px;">Crafting brands<br>for the <em>digital age</em></h2>
-      <p style="font-size:14px;color:var(--muted);line-height:1.8;font-weight:300;max-width:400px;">
-        BRND.ME builds and scales global health, wellness and lifestyle brands — combining technology, creativity and data to create products people love.
-      </p>
+      <p style="font-size:14px;color:var(--muted);line-height:1.8;font-weight:300;max-width:400px;">BRND.ME builds and scales global health, wellness and lifestyle brands — combining technology, creativity and data to create products people love.</p>
     </div>
     <div class="about-stat-grid">
-      <div>
-        <div class="about-stat-num">5<span>+</span></div>
-        <div class="about-stat-label">Active Brands</div>
-      </div>
-      <div>
-        <div class="about-stat-num">2<span>+</span></div>
-        <div class="about-stat-label">Markets</div>
-      </div>
-      <div>
-        <div class="about-stat-num">100<span>%</span></div>
-        <div class="about-stat-label">Free Gifting</div>
-      </div>
-      <div>
-        <div class="about-stat-num">∞</div>
-        <div class="about-stat-label">Possibilities</div>
-      </div>
+      <div><div class="about-stat-num">5<span>+</span></div><div class="about-stat-label">Active Brands</div></div>
+      <div><div class="about-stat-num">2<span>+</span></div><div class="about-stat-label">Markets</div></div>
+      <div><div class="about-stat-num">100<span>%</span></div><div class="about-stat-label">Free Gifting</div></div>
+      <div><div class="about-stat-num">∞</div><div class="about-stat-label">Possibilities</div></div>
     </div>
   </div>
 </div>
 
-<!-- Brands -->
 <section class="section" id="brands">
   <div class="section-label">Our Brands</div>
   <h2 class="section-title">Choose your <em>brand</em></h2>
   <p class="section-desc">Each brand has its own gifting portal with a curated catalog. Pick the one that fits your content and place your free order.</p>
-
   <div class="brands-grid">
 
-    <!-- Ishin -->
-    <a href="https://influencer-portal-liart.vercel.app/" class="brand-card" style="--accent-color: #8B1A2B;">
+    <a href="https://influencer-portal-liart.vercel.app/" class="brand-card" style="--accent-color:#8B1A2B;">
       <div class="brand-card-status live">Live</div>
       <div class="brand-card-tag">Women's Fashion</div>
       <div class="brand-card-name">Ishin</div>
       <div class="brand-card-tagline">Wear the culture · Tell the story</div>
       <p class="brand-card-desc">India's premium ethnic wear brand — kurta sets, co-ords, and festive wear crafted for the modern Indian woman.</p>
-      <div class="brand-card-categories">
-        <span class="brand-category-pill">Kurta Sets</span>
-        <span class="brand-category-pill">Co-ords</span>
-        <span class="brand-category-pill">Festive</span>
-        <span class="brand-category-pill">Fusion</span>
-      </div>
+      <div class="brand-card-categories"><span class="brand-category-pill">Kurta Sets</span><span class="brand-category-pill">Co-ords</span><span class="brand-category-pill">Festive</span><span class="brand-category-pill">Fusion</span></div>
       <div class="brand-card-cta">Browse Catalog →</div>
     </a>
 
-    <!-- Botanic Hearth -->
-    <a href="https://botanic-hearth-influencer-managemen.vercel.app/" class="brand-card" style="--accent-color: #4A7C59;">
+    <a href="https://botanic-hearth-influencer-managemen.vercel.app/" class="brand-card" style="--accent-color:#4A7C59;">
       <div class="brand-card-status live">Live</div>
       <div class="brand-card-tag">Personal Care</div>
       <div class="brand-card-name">Botanic<br>Hearth</div>
       <div class="brand-card-tagline">Nature's best · Crafted for you</div>
       <p class="brand-card-desc">America's most loved personal care brand, now in India. Botanically-powered hair oils, body washes and skin care for Indian skin.</p>
-      <div class="brand-card-categories">
-        <span class="brand-category-pill">Hair Care</span>
-        <span class="brand-category-pill">Body Wash</span>
-        <span class="brand-category-pill">Skin Care</span>
-        <span class="brand-category-pill">Natural</span>
-      </div>
+      <div class="brand-card-categories"><span class="brand-category-pill">Hair Care</span><span class="brand-category-pill">Body Wash</span><span class="brand-category-pill">Skin Care</span><span class="brand-category-pill">Natural</span></div>
       <div class="brand-card-cta">Browse Catalog →</div>
     </a>
 
-    <!-- Majestic Pure — Live -->
-    <a href="https://majestic-pure-influencer-management.vercel.app/" class="brand-card" style="--accent-color: #7B5EA7;">
+    <a href="https://majestic-pure-influencer-management.vercel.app/" class="brand-card" style="--accent-color:#7B5EA7;">
       <div class="brand-card-status live">Live</div>
       <div class="brand-card-tag">Wellness</div>
       <div class="brand-card-name">Majestic<br>Pure</div>
       <div class="brand-card-tagline">Simple · Natural · Restorative</div>
       <p class="brand-card-desc">Born from a love for aromatherapy — essential oils, massage oils and body care crafted to bring spa luxury into everyday life.</p>
-      <div class="brand-card-categories">
-        <span class="brand-category-pill">Essential Oils</span>
-        <span class="brand-category-pill">Body Oil</span>
-        <span class="brand-category-pill">Aromatherapy</span>
-      </div>
+      <div class="brand-card-categories"><span class="brand-category-pill">Essential Oils</span><span class="brand-category-pill">Body Oil</span><span class="brand-category-pill">Aromatherapy</span></div>
       <div class="brand-card-cta">Browse Catalog →</div>
     </a>
 
-    <!-- Villain — Live -->
-    <a href="https://villain-influencer-management.vercel.app/" class="brand-card" style="--accent-color: #C0392B;">
+    <a href="https://villain-influencer-management.vercel.app/" class="brand-card" style="--accent-color:#C0392B;">
       <div class="brand-card-status live">Live</div>
       <div class="brand-card-tag">Fragrance</div>
       <div class="brand-card-name">Villain</div>
       <div class="brand-card-tagline">Premium · Accessible · Bold</div>
       <p class="brand-card-desc">Not your traditional luxury brand. Villain brings premium fragrances within reach — bold scents for the everyday lifestyle.</p>
-      <div class="brand-card-categories">
-        <span class="brand-category-pill">EDP</span>
-        <span class="brand-category-pill">EDT</span>
-        <span class="brand-category-pill">Deodorant</span>
-      </div>
+      <div class="brand-card-categories"><span class="brand-category-pill">EDP</span><span class="brand-category-pill">EDT</span><span class="brand-category-pill">Deodorant</span></div>
       <div class="brand-card-cta">Browse Catalog →</div>
     </a>
 
-    <!-- MyFitness — Live -->
-    <a href="https://my-fitness-influencer-management.vercel.app/" class="brand-card" style="--accent-color: #E8732A;">
+    <a href="https://my-fitness-influencer-management.vercel.app/" class="brand-card" style="--accent-color:#E8732A;">
       <div class="brand-card-status live">Live</div>
       <div class="brand-card-tag">Fitness & Lifestyle</div>
       <div class="brand-card-name">My<br>Fitness</div>
       <div class="brand-card-tagline">Taste · Nutrition · Community</div>
       <p class="brand-card-desc">India's favourite fitness and lifestyle brand — started with the perfect peanut butter and grown into a range of nutrition and wellness products for everyday life.</p>
-      <div class="brand-card-categories">
-        <span class="brand-category-pill">Peanut Butter</span>
-        <span class="brand-category-pill">Nutrition</span>
-        <span class="brand-category-pill">Fitness</span>
-        <span class="brand-category-pill">Lifestyle</span>
-      </div>
+      <div class="brand-card-categories"><span class="brand-category-pill">Peanut Butter</span><span class="brand-category-pill">Nutrition</span><span class="brand-category-pill">Fitness</span><span class="brand-category-pill">Lifestyle</span></div>
       <div class="brand-card-cta">Browse Catalog →</div>
     </a>
 
   </div>
 </section>
 
-<!-- Divider -->
-<div class="divider">
-  <div class="divider-line"></div>
-  <div class="divider-dot"></div>
-  <div class="divider-line"></div>
-</div>
+<div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
 
-<!-- How It Works -->
 <section class="section">
   <div class="section-label">How It Works</div>
   <h2 class="section-title">Three steps to<br>your free <em>gift</em></h2>
   <p class="section-desc">The gifting process is simple — no payments, no commitments. Just pick what you love and we'll handle the rest.</p>
-
   <div class="how-grid">
-    <div class="how-card">
-      <div class="how-dot"></div>
-      <div class="how-number">01</div>
-      <div class="how-title">Choose Your Brand</div>
-      <p class="how-desc">Select a brand from our portfolio that aligns with your content and audience. Each brand has its own dedicated catalog.</p>
-    </div>
-    <div class="how-card">
-      <div class="how-dot"></div>
-      <div class="how-number">02</div>
-      <div class="how-title">Pick Your Products</div>
-      <p class="how-desc">Browse in-stock products, add your picks to the cart, and choose as many as you'd like from the available catalog.</p>
-    </div>
-    <div class="how-card">
-      <div class="how-dot"></div>
-      <div class="how-number">03</div>
-      <div class="how-title">Place Free Order</div>
-      <p class="how-desc">Submit your name, contact and address. Our team will process your request and ship the products directly to you — completely free.</p>
-    </div>
+    <div class="how-card"><div class="how-dot"></div><div class="how-number">01</div><div class="how-title">Choose Your Brand</div><p class="how-desc">Select a brand from our portfolio that aligns with your content and audience. Each brand has its own dedicated catalog.</p></div>
+    <div class="how-card"><div class="how-dot"></div><div class="how-number">02</div><div class="how-title">Pick Your Products</div><p class="how-desc">Browse in-stock products, add your picks to the cart, and choose as many as you'd like from the available catalog.</p></div>
+    <div class="how-card"><div class="how-dot"></div><div class="how-number">03</div><div class="how-title">Place Free Order</div><p class="how-desc">Submit your name, contact and address. Our team will process your request and ship the products directly to you — completely free.</p></div>
   </div>
 </section>
 
-<!-- Footer -->
 <footer>
   <div class="footer-logo">BRND<span>·</span>ME</div>
   <div class="footer-copy">© 2026 BRND.ME · Influencer Gifting Program · All brands reserved</div>
